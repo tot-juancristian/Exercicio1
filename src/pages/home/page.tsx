@@ -27,6 +27,7 @@ function Page() {
                 userProfile={userProfile}
             />
             <Grid
+                container
                 component="main"
                 sx={{
                     minHeight: "100vh",
@@ -41,9 +42,9 @@ function Page() {
                     sx={{
                         height: `calc(100vh - ${APPBAR_HEIGHT}px)`,
                         px: {
-                            xs: ThemeSettings.THEME_SPACING?.small || 2,
-                            sm: ThemeSettings.THEME_SPACING?.medium || 3,
-                            md: ThemeSettings.THEME_SPACING?.large || 4,
+                            xs: ThemeSettings.THEME_SPACING?.small || 4,
+                            sm: ThemeSettings.THEME_SPACING?.medium || 5,
+                            md: ThemeSettings.THEME_SPACING?.large || 6,
                         },
                         pb: { xs: 3, md: 4 },
                     }}
@@ -52,6 +53,7 @@ function Page() {
                     alignItems="stretch"
                 >
                     <Grid
+                        container
                         item
                         xs={12}
                         md={3}
@@ -59,7 +61,9 @@ function Page() {
                             display: "flex",
                         }}
                     >
-                        <Grid sx={{ width: "100%" }}>
+                        <Grid
+                            container
+                            sx={{ width: "100%" }}>
                             <SideNavBar
                                 logoText="Menu"
                                 navItems={navItems}
@@ -68,6 +72,7 @@ function Page() {
                         </Grid>
                     </Grid>
                     <Grid
+                        container
                         item
                         xs={12}
                         md={6}
@@ -97,6 +102,7 @@ function Page() {
                         />
                     </Grid>
                     <Grid
+                        container
                         item
                         xs={12}
                         md={3}
