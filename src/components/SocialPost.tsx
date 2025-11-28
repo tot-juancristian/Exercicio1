@@ -1,67 +1,96 @@
-import { Grid } from '@mui/material';
-import React from 'react';
-import ThemeSettings from '../theme/themeSettings';
+import React from "react";
+import { Grid, Typography, Button } from "@mui/material";
+import ThemeSettings from "../theme/themeSettings";
 
 interface SocialPostProps {
-    description: string;
-    commentsCount: number;
-    likesCount: number;
+  description: string;
+  commentsCount: number;
+  likesCount: number;
 }
 
-const SocialPost:
-    React.FC<SocialPostProps> = ({
-        description, commentsCount, likesCount,
-    }) => {
-        const [isLiked, setisLiked] = React.useState(false);
-        const [currentLikes, setCurrentLikes] = React.useState(likesCount);
-        const [] = React.useState(commentsCount);
+const SocialPost: React.FC<SocialPostProps> = ({
+  description,
+  commentsCount,
+  likesCount,
+}) => {
+  const [isLiked, setIsLiked] = React.useState(false);
+  const [currentLikes, setCurrentLikes] = React.useState(likesCount);
 
-        const handleLike = () => {
-            if (isLiked) {
-                setCurrentLikes(currentLikes - 1);
-            } else {
-                setCurrentLikes(currentLikes + 1);
-            }
-            setisLiked(!isLiked);
-        };
-        return (
-            <Grid style={{
-                justifyContent:"center",
-                background:ThemeSettings.THEME_COLORS.primary,
-                border: '1px solid #ccc',
-                padding: '15px',
-                maxWidth: '400px',
-                margin: '10p',
-                borderRadius: '8px'
-            }}>
-                //
-                <p>
-                    <strong> Descrição:</strong>
-                    {description}
-                </p>
+  const handleLike = () => {
+    setCurrentLikes((prev) => (isLiked ? prev - 1 : prev + 1));
+    setIsLiked((prev) => !prev);
+  };
 
-                <Grid 
-                style={{ 
-                    background: ThemeSettings.THEME_COLORS.secondary,
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    marginTop: '10px' }}>
-                    <span>
-                        <button
-                            onClick={handleLike}
-                            style={{
-                                background: 'none',
-                                border: 'none',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            {currentLikes} {isLiked ? 'Curtido' : 'Curtir'}
-                        </button>
+  return (
+    <Grid
+      container
+      sx={{
+        maxWidth: "100%",
+        width: "100%",
+        mx: "auto",
+        mb: 5,
+        p: 8,
+        borderRadius: 5,
+        bgcolor: ThemeSettings.THEME_COLORS?.primary || "#ffffff",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+      }}
+    >
+      <Grid item xs={12}>
+        <Typography
+          variant="body2"
+          sx={{
+            fontWeight: 999,
+            color: "#222",
+            mb: 3,
+            wordBreak: "break-word",
+          }}
+        >
+          {description}
+        </Typography>
+      </Grid>
 
-                    </span>
-                </Grid>
-            </Grid>
-        )
-    }
+      <Grid
+        item
+        xs={12}
+        sx={{
+          mt: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: ThemeSettings.THEME_COLORS?.secondary || "rgba(0,0,0,0.02)",
+          borderRadius: 1.5,
+          px: 1.5,
+          py: 0.75,
+        }}
+      >
+        <Typography variant="caption" sx={{ color: "rgba(0,0,0,0.7)" }}>
+          💬 {commentsCount} comentário{commentsCount !== 1 && "s"}
+        </Typography>
+
+        <Button
+          onClick={handleLike}
+          size="large"
+          sx={{
+            textTransform: "none",
+            fontSize: "1rem",
+            px: 3   ,
+            borderRadius: 999,
+            bgcolor: isLiked
+              ? ThemeSettings.THEME_COLORS?.black || "#1976d2"
+              : "transparent",
+            color: isLiked ? "#fff" : "rgba(0,0,0,0.8)",
+            "&:hover": {
+              bgcolor: isLiked
+                ? ThemeSettings.THEME_COLORS.black || "#1565c0"
+                : "rgba(0,0,0,0.04)",
+            },
+          }}
+        >
+          ❤️ {currentLikes} {isLiked ? "Curtidas" : "Curtir"}
+        </Button>
+      </Grid>
+    </Grid>
+  );
+};
 
 export default SocialPost;

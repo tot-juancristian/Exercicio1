@@ -2,10 +2,10 @@ class ThemeSettings {
   
   // Inserir cores que serão utilizadas no curso (todas)
   static readonly THEME_COLORS = {
-    primary: '#165c7d',
+    primary: '#00f300ff',
     primaryHover: '#07092A',
 
-    secondary: '#1DAEF3',
+    secondary: '#237a23ff',
     secondaryHover: '#0A318A',
 
     textPrimary: '#161516',    
