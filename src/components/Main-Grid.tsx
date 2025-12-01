@@ -9,7 +9,9 @@ interface GridProps {
 
 const MainGrid: React.FC<GridProps> = ({ children, className = "", style }) => {
   return (
-    <Grid className={className} style={style}>
+    <Grid
+      container
+      className={className} style={style}>
       {children}
     </Grid>
   );
